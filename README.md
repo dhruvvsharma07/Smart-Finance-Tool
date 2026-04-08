@@ -1,5 +1,6 @@
 # Smart Finance Tool - Expense & Risk Analyzer
-A Streamlit-based FinTech tool that analyzes bank statement PDFs, categorizes expenses, and detects suspicious transactions using a weighted risk system.
+A Streamlit-based FinTech tool that analyzes bank statement PDFs, categorizes expenses, and detects suspicious transactions using a weighted risk system also worked on masking account numbers, since user data privacy is important in real-world financial systems.
+The system includes PDF parsing with proper error handling as well.
 
 ## Try it Yourself
 1. Open the app:  
