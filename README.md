@@ -1,5 +1,7 @@
 Financial Risk Analyzer
 A Streamlit-based FinTech tool that parses bank statements, redacts sensitive information, and uses a weighted risk engine to detect anomalous spending patterns.
+To check the app , download the attached pdfs and upload in the streamlit link here-
+https://smart-finance-tool.streamlit.app/
 
 Overview
 This project was developed as a practice in Data Engineering and Predictive Logic. It solves the problem of "Alert Fatigue" in financial apps by using context-aware risk scoring rather than simple amount-based triggers.
