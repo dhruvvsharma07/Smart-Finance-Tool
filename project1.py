@@ -18,7 +18,7 @@ def highlight_risk(val):
     return 'background-color: #ff4b4b; color: white' if val >= 0.7 else ''
 
 st.set_page_config(page_title="Smart Finance Tool", layout="wide")
-st.title("Smart Finance Tool")
+st.title("🛡️ Smart Finance Tool")
 
 if 'processed_files' not in st.session_state:
     st.session_state.processed_files = set()
@@ -27,7 +27,7 @@ with st.sidebar:
     st.header("Settings")
     monthly_limit = st.number_input("Monthly Budget (₹)", value=20000)
 
-st.subheader("Step 1: Upload Statement")
+st.subheader("📤 Step 1: Upload Statement")
 uploaded_file = st.file_uploader("Choose a Bank PDF", type="pdf")
 
 if uploaded_file is not None:
@@ -49,7 +49,7 @@ if uploaded_file is not None:
         st.stop()
 
     if file_id in st.session_state.processed_files:
-        st.warning(" Duplicate file detected.")
+        st.warning("⚠️ Duplicate file detected.")
     else:
         st.session_state.processed_files.add(file_id)
         st.success("File processed!")
@@ -64,12 +64,12 @@ if uploaded_file is not None:
         
         def categorize(desc):
             desc = desc.lower()
-            if fuzzy_match(desc, ["swiggy", "zomato", "eat", "restaurant", "starbucks", "kfc", "mcdonalds", "food", "bharatpe"]): return "Food & Dining "
-            if fuzzy_match(desc, ["amazon", "flipkart", "myntra", "ajio", "nykaa", "blinkit", "zepto", "bigbasket", "shopping", "meesho"]): return "Shopping "
-            if fuzzy_match(desc, ["uber", "ola", "petrol", "shell", "hpcl", "iocl", "metro", "irctc", "indigo", "airindia"]): return "Travel "
-            if fuzzy_match(desc, ["rent", "society", "maintenance", "electricity", "jio", "airtel", "water", "recharge"]): return "Bills & Housing "
-            if fuzzy_match(desc, ["medical", "apollo", "pharmacy", "hospital", "pharmeasy"]): return "Health "
-            return "Others "
+            if fuzzy_match(desc, ["swiggy", "zomato", "eat", "restaurant", "starbucks", "kfc", "mcdonalds", "food", "bharatpe"]): return "Food & Dining 🍔"
+            if fuzzy_match(desc, ["amazon", "flipkart", "myntra", "ajio", "nykaa", "blinkit", "zepto", "bigbasket", "shopping", "meesho"]): return "Shopping 🛍️"
+            if fuzzy_match(desc, ["uber", "ola", "petrol", "shell", "hpcl", "iocl", "metro", "irctc", "indigo", "airindia"]): return "Travel 🚗"
+            if fuzzy_match(desc, ["rent", "society", "maintenance", "electricity", "jio", "airtel", "water", "recharge"]): return "Bills & Housing 🏠"
+            if fuzzy_match(desc, ["medical", "apollo", "pharmacy", "hospital", "pharmeasy"]): return "Health 🏥"
+            return "Others 💸"
                     
         df['Category'] = df['Description'].apply(categorize)  
 
@@ -84,10 +84,10 @@ if uploaded_file is not None:
         if total_expenses > monthly_limit:
             chart_data = df.groupby("Category")["Amount"].sum()
             culprit = chart_data.idxmax()
-            st.error(f" **Budget Breached!** Your spending in **{culprit}** is the primary driver.")
+            st.error(f"⚠️ **Budget Breached!** Your spending in **{culprit}** is the primary driver.")
 
         st.divider()
-        st.subheader(" Multi-Factor Risk Scoring")
+        st.subheader("🛡️ Multi-Factor Risk Scoring")
 
         risk_list = []
         for index, row in df.iterrows():
@@ -95,7 +95,7 @@ if uploaded_file is not None:
             desc_lower, cat = row['Description'].lower(), row['Category']
 
             if row['Amount'] > 5000:
-                if "Housing" in cat: status = " Verified Bill"
+                if "Housing" in cat: status = "✅ Verified Bill"
                 else: score += 0.4; reasons.append("High Amount")
             
             time_match = re.search(r'(\d{2}):(\d{2})', row['Description'])
@@ -105,7 +105,7 @@ if uploaded_file is not None:
 
             if any(x in desc_lower for x in ["casino", "bet", "crypto", "unknown", "lotto"]): score += 0.5; reasons.append("High-Risk Merchant")
 
-            if score > 0.0 or status == "Verified Bill":
+            if score > 0.0 or status == "✅ Verified Bill":
                 risk_list.append({"Date": row['Date'], "Description": row['Description'], "Amount": row['Amount'], "Risk Score": round(score, 2), "Flags": ", ".join(reasons) if reasons else "None", "Status": status})
 
         if risk_list:
@@ -117,23 +117,23 @@ if uploaded_file is not None:
 
         col1, col2 = st.columns(2)
         with col1:
-            st.subheader("Category Breakdown")
+            st.subheader("📊 Category Breakdown")
             chart_data = df.groupby("Category")["Amount"].sum()
             st.bar_chart(chart_data)
         
         with col2:
-            st.subheader(" Your Financial Coach")
+            st.subheader("🤖 Your Financial Coach")
             if not chart_data.empty:
                 top_cat = chart_data.idxmax()
                 advice_map = {
-                    "Food & Dining ": "High food delivery costs. Set a weekly cap.",
-                    "Shopping ": "E-commerce spending is high. Use the 24-hour rule.",
-                    "Travel ": "Commute costs are peaking. Check for monthly passes.",
-                    "Bills & Housing ": "Fixed costs are within range.",
-                    "Health ": "Medical expenses noted. Keep insurance docs ready.",
-                    "Others ": "Review smaller UPI transfers."
+                    "Food & Dining 🍔": "High food delivery costs. Set a weekly cap.",
+                    "Shopping 🛍️": "E-commerce spending is high. Use the 24-hour rule.",
+                    "Travel 🚗": "Commute costs are peaking. Check for monthly passes.",
+                    "Bills & Housing 🏠": "Fixed costs are within range.",
+                    "Health 🏥": "Medical expenses noted. Keep insurance docs ready.",
+                    "Others 💸": "Review smaller UPI transfers."
                 }
-                st.info(f" AI Insight: {advice_map.get(top_cat, 'Well balanced!')}")
+                st.info(f"💡 AI Insight: {advice_map.get(top_cat, 'Well balanced!')}")
 
         if usage_pct < 100: st.balloons()
     else:
