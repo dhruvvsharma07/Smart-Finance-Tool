@@ -1,12 +1,13 @@
-Financial Risk Analyzer
+### Financial Risk Analyzer
 A Streamlit-based FinTech tool that parses bank statements, redacts sensitive information, and uses a weighted risk engine to detect anomalous spending patterns.
-To check the app , download the attached pdfs and upload in the streamlit link here-
+
+### To check the app , download the attached pdfs and upload in the streamlit link here-
 https://smart-finance-tool.streamlit.app/
 
-Overview
+### Overview
 This project was developed as a practice in Data Engineering and Predictive Logic. It solves the problem of "Alert Fatigue" in financial apps by using context-aware risk scoring rather than simple amount-based triggers.
 
-Key Features:
+### Key Features:
 1. Automated Parsing: Uses pdfplumber and Regex to convert unstructured PDF text into structured Pandas DataFrames.
 
 2. Data Masking: Automatically redacts 10-16 digit account numbers for user privacy.
@@ -23,7 +24,7 @@ Key Features:
 
 6. False-Positive Mitigation: Automatically verifies recurring bills (like Rent) to prevent unnecessary risk alerts.
 
-Tech Stack I Used
+### Tech Stack I Used
 
 1. Language: Python 3.12.3
 
@@ -33,4 +34,16 @@ Tech Stack I Used
 
 4. Extraction: pdfplumber
 
-5. Regex: Pattern matching for transaction extraction and data masking.
+
+## DEMO
+
+### 🧾 Upload & Analysis
+![Upload](Screenshot 2026-04-09 010647.png)
+
+### 🚨 Risk Detection
+![Risk](Screenshot 2026-04-09 010712.png)
+
+
+![Dashboard](image.png)
+
+6. Regex: Pattern matching for transaction extraction and data masking.
