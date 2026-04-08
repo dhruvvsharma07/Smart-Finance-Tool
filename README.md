@@ -4,6 +4,12 @@ A Streamlit-based FinTech tool that parses bank statements, redacts sensitive in
 ### To check the app , download the attached pdfs and upload in the streamlit link here-
 https://smart-finance-tool.streamlit.app/
 
+TO DOWNLOAD DEMO PDF(s)
+
+- [Normal User](demo_normal_user.pdf)
+- [High Spending Pattern](demo_high_spender.pdf)
+- [Suspicious Transactions](demo_bank_statement.pdf)
+
 ### Overview
 This project was developed as a practice in Data Engineering and Predictive Logic. It solves the problem of "Alert Fatigue" in financial apps by using context-aware risk scoring rather than simple amount-based triggers.
 
@@ -34,16 +40,16 @@ This project was developed as a practice in Data Engineering and Predictive Logi
 
 4. Extraction: pdfplumber
 
+5. Regex: Pattern matching for transaction extraction and data masking.
 
-## DEMO
 
-### 🧾 Upload & Analysis
-![Upload](Screenshot 2026-04-09 010647.png)
+## PROTOTYPE
 
-### 🚨 Risk Detection
-![Risk](Screenshot 2026-04-09 010712.png)
 
+![Upload](FIRSTPAGE.png)
+
+![Risk](SECONDPAGE.png)
 
 ![Dashboard](image.png)
 
-6. Regex: Pattern matching for transaction extraction and data masking.
+
