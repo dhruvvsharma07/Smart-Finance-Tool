@@ -25,12 +25,12 @@ Key Features:
 
 Tech Stack I Used
 
-Language: Python 3.12.3
+1. Language: Python 3.12.3
 
-Frontend: Streamlit
+2. Frontend: Streamlit
 
-Data Processing: Pandas
+3. Data Processing: Pandas
 
-Extraction: pdfplumber
+4. Extraction: pdfplumber
 
-Regex: Pattern matching for transaction extraction and data masking.
+5. Regex: Pattern matching for transaction extraction and data masking.
